@@ -1,1 +1,114 @@
 
+<!DOCTYPE html>
+<html lang="om">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galmee Tajaajila Waldaa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <span>⛪</span> GAHE HOJII
+        </div>
+        <div class="header-btns">
+            <button id="admin-btn" onclick="toggleAdminMode()" class="btn-admin">🔒 ADMIN</button>
+            <button onclick="openSettingsModal()" class="btn-setting">⚙️ SETTINGS</button>
+            <button onclick="resetData()" class="btn-reset">↺</button>
+        </div>
+    </header>
+
+    <main>
+        <div id="admin-badge" class="admin-banner hidden">
+            <span>🔓 ADMIN BANIREERA!</span>
+            <span onclick="lockAdminMode()" style="cursor:pointer; text-decoration:underline;">Cufi</span>
+        </div>
+
+        <section class="card">
+            <div class="card-title">
+                <span>KARAALEE KALAANDARII ITYOOPHIYA</span>
+                <span id="day-name-badge" class="badge">---</span>
+            </div>
+            <div class="grid-3">
+                <div class="input-group"><label>Guyyaa</label><input type="number" id="d-day" min="1" max="30"></div>
+                <div class="input-group"><label>Ji'a</label><input type="number" id="d-month" min="1" max="13"></div>
+                <div class="input-group"><label>Woggaa</label><input type="number" id="d-year" min="2000" max="2060"></div>
+            </div>
+            <div id="service-status-tag" class="status-box">Guyyaa galchi...</div>
+        </section>
+
+        <section>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <span style="font-size:11px; font-weight:bold; color:#475569;">📅 SAGANTAA DHUFAU</span>
+                <button onclick="autoSchedule()" class="btn-gen">✨ GENERATE</button>
+            </div>
+            <div id="schedule-cards-container"></div>
+        </section>
+
+        <section class="table-container">
+            <div style="padding:10px; background:#f8fafc; border-bottom:1px solid #e2e8f0; display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:11px; font-weight:bold; color:#b45309;">👑 DURA BU'AA</span>
+                <span id="leader-count" class="badge" style="background:#fef3c7; color:#b45309;">0</span>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:25px; text-align:center;">#</th>
+                        <th>Maqaa & Bilbila</th>
+                        <th style="width:45px; text-align:center;">Qabdi</th>
+                        <th style="width:85px; text-align:center;">GOCHA</th>
+                    </tr>
+                </thead>
+                <tbody id="leader-table-body"></tbody>
+            </table>
+        </section>
+
+        <section class="table-container">
+            <div style="padding:10px; background:#f8fafc; border-bottom:1px solid #e2e8f0; display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:11px; font-weight:bold; color:#047857;">📖 LALLABAA</span>
+                <span id="preacher-count" class="badge" style="background:#ecfdf5; color:#047857;">0</span>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:25px; text-align:center;">#</th>
+                        <th>Maqaa & Bilbila</th>
+                        <th style="width:45px; text-align:center;">Qabdi</th>
+                        <th style="width:85px; text-align:center;">GOCHA</th>
+                    </tr>
+                </thead>
+                <tbody id="preacher-table-body"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <button id="add-leader-btn" onclick="addMemberSlot('leaders')" class="btn-add hidden">+ DURA BU'AA</button>
+            <button id="add-preacher-btn" onclick="addMemberSlot('preachers')" class="btn-add hidden">+ LALLABAA</button>
+            <button onclick="saveAllData()" class="btn-save">KUUSI ✓</button>
+        </div>
+    </footer>
+
+    <div id="settings-modal" class="modal-overlay hidden">
+        <div class="modal-body">
+            <h3 style="font-size:13px; font-weight:bold; color:#0f172a; border-bottom:1px solid #e2e8f0; padding-bottom:8px;">⚙️ SETTINGS</h3>
+            <div style="display:flex; flex-direction:column; gap:6px;">
+                <label style="font-size:11px; font-weight:bold; color:#475569;">App Password:</label>
+                <button onclick="changeAppLockPassword()" class="modal-btn" style="background:#0284c7;">Password App Jijjiiri</button>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:6px; margin-top:8px;">
+                <label style="font-size:11px; font-weight:bold; color:#475569;">Admin Password:</label>
+                <button onclick="changeAdminPassword()" class="modal-btn" style="background:#d97706;">Password Admin Jijjiiri</button>
+            </div>
+            <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:10px;">
+                <button onclick="closeSettingsModal()" class="modal-close">Cufi</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
